@@ -1,0 +1,49 @@
+---
+import App from "../components/App";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Game Grid</title>
+  </head>
+  <body>
+    <App client:load />
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--color-primary-a90);
+    font-family: system-ui, sans-serif;
+  }
+
+  :root {
+    --color-primary-a0: #ffffff;
+    --color-primary-a10: #d7cae7;
+    --color-primary-a20: #af97d0;
+    --color-primary-a30: #8767b8;
+    --color-primary-a40: #5c389f;
+    --color-primary-a50: #2a0387;
+    --color-primary-a60: #26086b;
+    --color-primary-a70: #210b50;
+    --color-primary-a80: #1b0b36;
+    --color-primary-a90: #13051f;
+  }
+</style>

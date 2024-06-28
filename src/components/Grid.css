@@ -1,0 +1,111 @@
+.Grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  max-height: 90vh;
+  transition: 100ms;
+
+  /* 2 -> 4 */
+  &:has(> :nth-last-child(2):nth-child(-n + 3)) {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 5 -> 6 */
+  &:has(> :nth-last-child(5):nth-child(-n + 2)) {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* 7 - 12 */
+  &:has(> :nth-last-child(7):nth-child(-n + 6)) {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  /* 13 - 16 */
+  &:has(> :nth-last-child(13):nth-child(-n + 5)) {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  /* 17-30 */
+  &:has(> :nth-child(17)).Grid {
+    font-size: 0.75rem;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* I hate this */
+.game.dragging~.game *,
+.game:has(~.dragging) * {
+  pointer-events: none;
+}
+
+.game {
+  background-color: var(--color-primary-a30);
+  padding: 4px;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  position: relative;
+
+  &.dragging {
+    opacity: 0.7;
+  }
+
+  &.dragover {
+    background-color: var(--color-primary-a10);
+  }
+
+  .cover {
+    aspect-ratio: 0.75;
+    object-fit: contain;
+    max-width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  .title {
+    all: unset;
+    flex-shrink: 1;
+    background-color: transparent;
+    color: var(--color-primary-a70);
+    width: 100%;
+    text-align: center;
+    border: none;
+    padding-top: 2px;
+    font-size: 1em;
+    line-height: 1em;
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+      Consolas, "DejaVu Sans Mono", monospace;
+    font-weight: normal;
+  }
+
+  .title:focus {
+    text-align: left;
+  }
+
+  .remove {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-primary-a40);
+    color: var(--color-primary-a10);
+    border-radius: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    opacity: 0;
+    line-height: 2rem;
+  }
+
+  &:hover:not(.dragging) .remove {
+    opacity: 100%;
+    display: initial;
+  }
+}
